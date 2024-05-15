@@ -15,23 +15,20 @@ app.get("/", (req, res) => {
 });
 // Define Socket.IO event handlers
 io.on("connection", (socket) => {
-  console.log(socket.id, "user connected");
+  // console.log(socket.id, "user connected");
 
   // Handle 'message' event
   socket.on("message", (data) => {
     console.log("Message received:", data);
-    if (data.toLowerCase() === "hi") {
-      // Send an auto-generated first message
-      io.to(socket.id).emit("message", "Hello! How can I assist you?");
-    }
+   
     // Broadcast the message to all connected clients
-    io.emit("message", data);
+    // io.emit("message", data);
   });
 
   // Handle disconnection
-  socket.on("disconnect", () => {
-    console.log("A user disconnected");
-  });
+  // socket.on("disconnect", () => {
+  //   console.log("A user disconnected");
+  // });
 });
 
 const PORT = process.env.PORT || 8000;
